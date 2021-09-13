@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react'
-
-interface ToggleComponent extends JSX.Element {
-  show(): void
-  hide(): void
-  toggle(value: boolean): void
-}
+import { ToggleComponent } from './useToggleCom'
 
 const useToggleComWithPayload = <T>(
   Component: ToggleComponent,

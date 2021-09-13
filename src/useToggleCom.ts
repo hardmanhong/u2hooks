@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import useToggle from './useBoolean'
 
-interface ToggleComponent extends JSX.Element {
-  show(): void
-  hide(): void
-  toggle(value: boolean): void
+export type ToggleComponent = any & {
+  show: () => void
+  hide: () => void
+  toggle: (value: boolean) => void
 }
 
 type ParamsType = {

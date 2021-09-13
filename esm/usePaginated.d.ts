@@ -1,7 +1,13 @@
-declare type optionsType = {
-    defaultPageSize: number;
+declare type OptionsType = {
+    defaultPageSize?: number;
+    alias?: {
+        list: string;
+        total: string;
+        current: string;
+        pageSize: string;
+    };
 };
-export default function useTableSearch<T>(service: () => Promise<T>, options: optionsType): {
+export default function usePaginated(service: any, options: OptionsType): {
     onSearch: (values: any) => void;
     pagination: {
         [key: string]: any;

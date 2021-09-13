@@ -1,9 +1,8 @@
-/// <reference types="react" />
-interface ToggleComponent extends JSX.Element {
-    show(): void;
-    hide(): void;
-    toggle(value: boolean): void;
-}
+export declare type ToggleComponent = any & {
+    show: () => void;
+    hide: () => void;
+    toggle: (value: boolean) => void;
+};
 declare type ParamsType = {
     Component: ToggleComponent;
     onOk: Function;
