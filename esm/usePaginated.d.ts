@@ -7,7 +7,7 @@ declare type OptionsType = {
         pageSize: string;
     };
 };
-export default function usePaginated(service: any, options: OptionsType): {
+export default function usePaginated(service: any, options?: OptionsType): {
     onSearch: (values: any) => void;
     pagination: {
         [key: string]: any;

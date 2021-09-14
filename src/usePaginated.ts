@@ -19,7 +19,17 @@ type OptionsType = {
   }
 }
 
-export default function usePaginated(service: any, options: OptionsType) {
+export default function usePaginated(
+  service: any,
+  options: OptionsType = {
+    alias: {
+      list: 'list',
+      total: 'total',
+      current: 'current',
+      pageSize: 'pageSize'
+    }
+  }
+) {
   const result = useRequest(
     ({ current, pageSize, ...params }) =>
       service({

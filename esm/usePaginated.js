@@ -9,6 +9,14 @@ var ALIAS = {
     pageSize: 'pageSize'
 };
 export default function usePaginated(service, options) {
+    if (options === void 0) { options = {
+        alias: {
+            list: 'list',
+            total: 'total',
+            current: 'current',
+            pageSize: 'pageSize'
+        }
+    }; }
     var result = useRequest(function (_a) {
         var _b;
         var current = _a.current, pageSize = _a.pageSize, params = __rest(_a, ["current", "pageSize"]);
