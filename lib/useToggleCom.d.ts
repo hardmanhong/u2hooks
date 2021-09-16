@@ -5,8 +5,8 @@ export declare type ToggleComponent = any & {
 };
 declare type ParamsType = {
     Component: ToggleComponent;
-    onOk: Function;
-    onCancel: Function;
+    onOk?: () => void;
+    onCancel?: () => void;
 };
 declare type useToggleComReturn = [boolean, {
     onShow: () => void;

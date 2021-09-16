@@ -9,8 +9,8 @@ export type ToggleComponent = any & {
 
 type ParamsType = {
   Component: ToggleComponent
-  onOk: Function
-  onCancel: Function
+  onOk?: () => void
+  onCancel?: () => void
 }
 
 type useToggleComReturn = [boolean, { onShow: () => void; onHide: () => void }]
