@@ -1,4 +1,5 @@
 export { default as useBoolean } from './useBoolean';
+export { default as useForceUpdate } from './useForceUpdate';
 export { default as usePaginated } from './usePaginated';
 export { default as useQuery } from './useQuery';
 export { default as useToggleCom } from './useToggleCom';
