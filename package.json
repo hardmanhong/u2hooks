@@ -1,6 +1,6 @@
 {
   "name": "u2hooks",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "An efficient React Hooks",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -11,6 +11,7 @@
     "esm",
     "package.json"
   ],
+  "homepage": "https://github.com/hardmanhong/u2hooks",
   "scripts": {
     "start": "rollup -w --environment NODE_ENV:development -c config/rollup.config.dev.js",
     "build:cjs": "tsc",
