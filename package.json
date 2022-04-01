@@ -1,6 +1,6 @@
 {
   "name": "u2hooks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An efficient React Hooks",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -22,13 +22,13 @@
   "author": "goandup@qq.com",
   "license": "ISC",
   "peerDependencies": {
-    "query-string": "^7.0.1",
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
     "react-router-dom": ">=5.1.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "query-string": "^7.0.1"
   },
   "devDependencies": {
     "@ahooksjs/use-request": "^2.8.10",
@@ -56,6 +56,7 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "rimraf": "^3.0.2",
+    "rollup": "^2.70.1",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-filesize": "^9.1.1",
     "rollup-plugin-livereload": "^2.0.5",
