@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import useBoolean from './useBoolean'
 
 export type ToggleComponent = any & {
@@ -14,6 +14,7 @@ type ParamsType = {
 }
 
 type useToggleReturn = [boolean, { onShow: () => void; onHide: () => void }]
+type useVisibleCallback = (visible: boolean) => void
 
 const useToggle = ({
   Component,
@@ -21,6 +22,7 @@ const useToggle = ({
   onCancel
 }: ParamsType): useToggleReturn => {
   const [visible, toggle] = useBoolean()
+  const useVisibleRef = useRef<useVisibleCallback>(Component.onVisibleChange)
   const onShow = () => {
     if (typeof onOk === 'function') {
       onOk()
@@ -55,6 +57,11 @@ const useToggle = ({
       destroy()
     }
   }, [])
+  useEffect(() => {
+    if (typeof useVisibleRef.current === 'function') {
+      useVisibleRef.current(visible)
+    }
+  }, [visible])
   return [visible, { onShow, onHide }]
 }
 const useToggleWithPayload = <T>(
