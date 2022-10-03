@@ -4,7 +4,7 @@ import livereload from 'rollup-plugin-livereload'
 import postcss from 'rollup-plugin-postcss'
 
 export default {
-  input: 'examples/src/app.jsx',
+  input: 'examples/src/app.tsx',
   output: {
     file: 'dist/bundle.js',
     format: 'iife',
@@ -12,8 +12,8 @@ export default {
   },
   plugins: [
     postcss({
-      minimize: process.env.NODE_ENV === 'production',
-      use: ['sass']
+      minimize: process.env.NODE_ENV === 'production'
+      // use: ['e']
     }),
     ...baseConfig.plugins,
     serve({

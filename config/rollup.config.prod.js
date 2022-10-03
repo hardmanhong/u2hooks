@@ -17,7 +17,7 @@ export default {
     {
       file: `lib/${name}.umd.js`,
       format: 'umd',
-      name: 'upUse',
+      name: 'u2hooks',
       banner,
       plugins: [terser()]
     },

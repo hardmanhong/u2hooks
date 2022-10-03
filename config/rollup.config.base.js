@@ -21,11 +21,14 @@ export default {
     }),
     typescript(),
     nodeResolve({
-      extensions: ['.js', '.ts']
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css']
     }),
     commonjs({
       include: 'node_modules/**'
     }),
-    babel({ babelHelpers: 'bundled' })
+    babel({
+      babelHelpers: 'bundled',
+      extensions: ['.js', '.ts', '.jsx', 'tsx']
+    })
   ]
 }
