@@ -38,8 +38,12 @@ const useToggle = ({
   }
   useEffect(() => {
     const init = () => {
-      Component.show = onShow
-      Component.hide = onHide
+      Component.show = () => {
+        toggle(true)
+      }
+      Component.hide = () => {
+        toggle(false)
+      }
       Component.toggle = toggle
       return () => {
         Component.show = () => {}
@@ -68,7 +72,7 @@ const useToggleWithPayload = <T>(
       const hideCache = Component.hide
       const toggleCache = Component.toggle
 
-      Wrapper.show = (payload: T) => {
+      Wrapper.show = (payload = defaultPayload) => {
         showCache()
         toggle(true)
         setPayload(payload)
