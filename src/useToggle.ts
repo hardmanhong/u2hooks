@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import useBoolean from './useBoolean'
 
 export type ToggleComponent = any & {
@@ -14,7 +14,6 @@ type ParamsType = {
 }
 
 type useToggleReturn = [boolean, { onShow: () => void; onHide: () => void }]
-type useVisibleCallback = (visible: boolean) => void
 
 const useToggle = ({
   Component,
@@ -22,7 +21,7 @@ const useToggle = ({
   onCancel
 }: ParamsType): useToggleReturn => {
   const [visible, toggle] = useBoolean()
-  const useVisibleRef = useRef<useVisibleCallback>(Component.onVisibleChange)
+
   const onShow = () => {
     if (typeof onOk === 'function') {
       onOk()
@@ -39,16 +38,13 @@ const useToggle = ({
   }
   useEffect(() => {
     const init = () => {
-      Component.show = () => {
-        toggle(true)
-      }
-      Component.hide = () => {
-        toggle(false)
-      }
+      Component.show = onShow
+      Component.hide = onHide
       Component.toggle = toggle
       return () => {
         Component.show = () => {}
         Component.hide = () => {}
+        Component.toggle = () => {}
         Component.toggle = () => {}
       }
     }
@@ -57,29 +53,31 @@ const useToggle = ({
       destroy()
     }
   }, [])
-  useEffect(() => {
-    if (typeof useVisibleRef.current === 'function') {
-      useVisibleRef.current(visible)
-    }
-  }, [visible])
   return [visible, { onShow, onHide }]
 }
 const useToggleWithPayload = <T>(
   Component: ToggleComponent,
   Wrapper: ToggleComponent,
   defaultPayload: T
-): T => {
+): [boolean, T] => {
+  const [visible, toggle] = useBoolean()
   const [payload, setPayload] = useState(defaultPayload)
   useEffect(() => {
     const initInstance = () => {
       const showCache = Component.show
       const hideCache = Component.hide
       const toggleCache = Component.toggle
-      Wrapper.show = (payload = defaultPayload) => {
-        setPayload(payload)
+
+      Wrapper.show = (payload: T) => {
         showCache()
+        toggle(true)
+        setPayload(payload)
       }
-      Wrapper.hide = hideCache
+      Wrapper.hide = () => {
+        hideCache()
+        toggle(false)
+        setPayload(defaultPayload)
+      }
       Wrapper.toggle = toggleCache
       return () => {
         Wrapper.show = () => {}
@@ -92,6 +90,6 @@ const useToggleWithPayload = <T>(
       destroy()
     }
   }, [])
-  return payload
+  return [visible, payload]
 }
 export { useToggle, useToggleWithPayload }
